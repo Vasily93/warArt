@@ -1,10 +1,7 @@
 import * as THREE from 'three'
-import { useEffect, useRef, useState } from 'react'
-import { Canvas, useFrame } from '@react-three/fiber'
-import { useCursor, MeshReflectorMaterial, Image, Text, Environment, MeshDistortMaterial, MeshWobbleMaterial } from '@react-three/drei'
-import { useRoute, useLocation } from 'wouter'
-import getUuid from 'uuid-by-string'
-
+import { Canvas } from '@react-three/fiber'
+import { MeshReflectorMaterial, Environment } from '@react-three/drei'
+import Frames from './Frames'
 
 export default function App({ images }) {
   return (
@@ -12,10 +9,11 @@ export default function App({ images }) {
       <color args={['black']} />
       <Environment preset='apartment' />
       <group position={[0, -0.5, 0]}>
+        <Frames images={images} />
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
           <planeGeometry args={[50, 50]} />
           <MeshReflectorMaterial
-            blur={[300, 100]}
+            blur={[300,70]}
             resolution={2048}
             mixBlur={1}
             mixStrength={40}
