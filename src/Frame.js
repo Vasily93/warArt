@@ -1,13 +1,16 @@
 import * as THREE from 'three'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { useCursor, Image, Text } from '@react-three/drei'
 import getUuid from 'uuid-by-string'
+import { handleScroll } from './helpers'
 
 const GOLDENRATIO = 1.61803398875
 
-export default function Frame({ url, c = new THREE.Color(), p = new THREE.Vector3(), ...props }) {
+export default function Frame({ url, c = new THREE.Color(), p = new THREE.Vector3(),zoomed,  cameraP, ...props }) {
   const [hovered, hover] = useState(false)
+  const [ yAxel, changeY] = useState(0)
+  const [textOpacity, changeOpacity] = useState(0)
   const [rnd] = useState(() => Math.random())
   const wall = useRef()
   const image = useRef()
@@ -16,9 +19,13 @@ export default function Frame({ url, c = new THREE.Color(), p = new THREE.Vector
   const {name, description } = props
   useCursor(hovered)
   
+  let counter
+  console.log(textOpacity)
   useFrame((state) => {
     if(wall.current) wall.current.position.lerp(hovered ? p.set(0, GOLDENRATIO / 1.9, 0) : p.set(0, GOLDENRATIO / 2, 0), 0.08)
+    changeOpacity(1-(state.camera.position.z - wall.current.position.z)/10 - 0.5)
   })
+
   return (
     <group {...props}>
       <mesh
@@ -35,19 +42,31 @@ export default function Frame({ url, c = new THREE.Color(), p = new THREE.Vector
           <meshBasicMaterial toneMapped={false} fog={false} />
         </mesh>
         <Image raycast={() => null} ref={image} position={[0, 0, 0.7]} scale={[0.8, GOLDENRATIO/2.2, 0.7]} url={url} />
+
+        <mesh ref={frame} raycast={() => null} scale={[1.2, 0.4, 0.2]} position={[0.4, 0.5, 0.2]}>
+          <boxGeometry />
+          <meshBasicMaterial toneMapped={false} fog={false}  color='black' opacity={textOpacity}/>
+        </mesh>
+        <mesh ref={frame} raycast={() => null} scale={[1.2, 0.4, 0.2]} position={[0.4, -0.45, 0.2]}>
+          <boxGeometry />
+          <meshBasicMaterial toneMapped={false} fog={false}  color='black' opacity={textOpacity}/>
+        </mesh>
       </mesh>
-      <Text maxWidth={0.7} anchorX="left" anchorY="top" textAlign='center' position={[1.2, GOLDENRATIO, 0]} fontSize={0.08} color="white" >
-        " {name} "
-      </Text>
-      <Text maxWidth={0.7} anchorX="left" anchorY={0.2} textAlign='left' position={[1.2, GOLDENRATIO, 0]} fontSize={0.058} color="white" whiteSpace='nowrap' clipRect={[, , 0.9, 4]} fillOpacity={0.9} >
+      
+      <Text maxWidth={0.8} onWheel={(e) => changeY(handleScroll(e, yAxel))} anchorX="left" anchorY={yAxel} textAlign='left' position={[1.2, GOLDENRATIO, -0.1]} fontSize={0.058} color="white"  clipRect={[,, 1, 1]} fillOpacity={textOpacity}>
         {description}
       </Text>
-      {/* <Text maxWidth={0.6} anchorX="left" anchorY={1.3} textAlign='center' position={[1.2, GOLDENRATIO, 0]} fontSize={0.058} color="white">
+
+      <Text maxWidth={0.7} anchorX="left" anchorY="top" textAlign='center' position={[1.1, GOLDENRATIO, 0.03]} fontSize={0.08} color="white"  fillOpacity={textOpacity}>
+        " {name} "
+      </Text>
+      
+      <Text maxWidth={0.7} anchorX="left" anchorY={1.2} textAlign='center' position={[1, GOLDENRATIO, 0.3]} fontSize={0.058} color="white" fillOpacity={textOpacity}>
         Dive In
       </Text>
-      <Text maxWidth={0.6} anchorX="left" anchorY={1.4} textAlign='center' position={[1.2, GOLDENRATIO, 0]} fontSize={0.058} color="white">
-        View in Black & White
-      </Text> */}
+      <Text maxWidth={0.7} anchorX="left" anchorY={1.3} textAlign='center' position={[1, GOLDENRATIO, 0.3]} fontSize={0.058} color="white" fillOpacity={textOpacity}>
+        View Black & White
+      </Text>
       
     </group>
   )
