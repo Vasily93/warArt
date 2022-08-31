@@ -11,7 +11,6 @@ export const handleScroll = (e, currentY) => {
       direction = delta > 0 ? -0.02 : 0.02;
   }
 
-  console.log(direction)
   return direction + currentY
 }
 
