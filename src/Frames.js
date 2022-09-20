@@ -23,7 +23,7 @@ export default function Frames({ images, q = new THREE.Quaternion(), p = new THR
       clicked.current?.parent?.localToWorld(p.set(0.4, GOLDENRATIO / 2, 1.25))
       clicked.current?.parent?.getWorldQuaternion(q)
     } else {
-      p.set(0, 0, 7.5)
+      p.set(0, 1, 6.8)
       q.identity()
     }
   })

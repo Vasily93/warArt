@@ -5,7 +5,7 @@ import Frames from './Frames'
 
 export default function App({ images }) {
   return (
-    <Canvas gl={{ alpha: false }} dpr={[1, 1.5]} camera={{ fov: 70, position: [0, 2, 15] }}>
+    <Canvas gl={{ alpha: false }} dpr={[1, 1.5]} camera={{ fov: 70, position: [0, 2, 10] }}>
       <color args={['black']} />
       <Environment preset='apartment' />
       <group position={[0, -0.5, 0]}>
