@@ -19,8 +19,8 @@ import img6BW from './images/6BW.JPG'
 import img7BW from './images/7BW.JPG'
 // import img8BW from './images/8BW.JPG'
 
-
-const text = `
+const texts = [
+  `
 The idea for the picture was born after watching a video where Russian mothers do not believe their sons 
 (soldiers) who were capturedin Ukraine. Propaganda turned out to be so effective that even the primordial 
 maternal instinct began to fail in women. This is a grotesque reference 
@@ -28,17 +28,39 @@ to the popular phrase attributed to Marshal Zhukov
 “Women will give birth to new ones”. 
 It expresses the contemptuous attitude of the authorities and generals, 
 both to mothers and women in general, and their soldiers.
+`,
 `
+A woman covers her son or husband
+as a child with a veil of Earth.
+She sings her last lullaby.
+The artist lived in Crimea for a long time.
+The landscape was inspired by the
+theme of a quiet and dark Ukrainian
+night in Crimea.
+`,
+`
+The painting was created under the
+impression of the massacres in Bucha
+and other regions of Ukraine.
+The victims of the tragedy in Bucha
+were shot with hands tied behind their
+backs and bags on their heads.
+`
+]
 
 const images = [
-  {position: [-4, 0, 2.5], rotation: [0, -0.4, 0], url: [img1, img1bw] , name: 'DANCE OF BIRTH AND DEATH', description: text},
-  {position: [4, 0, 2.5], rotation: [0, 0.4, 0], url: [img3, img3BW] , name: 'IMAGE 3', description: text},
-  // {position: [2, 0, 2.2], rotation: [0, -0.9, 0], url: [img2, img2BW] , name: 'IMAGE 2', description: text},
-  {position: [-1.8, 0, 2.2], rotation: [0, 0.9, 0], url: [img4, img4BW] , name: 'IMAGE 4', description: text},
-  // {position: [0, 0, 3.8], rotation: [0, 0, 0], url: [img6, img6BW] , name: 'Image 5', description: text},
-  // {position: [2.7, 2, 3], rotation: [0, -0.2, 0], url: [img5, img5BW] , name: 'DANCE OF BIRTH AND DEATH', description: text},
-  // {position: [0, 2, 2.5], rotation: [0, 0, 0], url: [img7, img7BW] , name: 'DANCE OF BIRTH AND DEATH', description: text},
-  // {position: [-2.7, 2, 3], rotation: [0, 0.2, 0], url: [img8, img7BW] , name: 'DANCE OF BIRTH AND DEATH', description: text},
+  //left side
+  {position: [-4.5, 0, -1.5], rotation: [0, 0.6, 0], url: [img1, img1bw] , name: 'DANCE OF BIRTH AND DEATH', description: texts[0]},
+  //middle
+  {position: [1.1, 0, -2.5], rotation: [0, -0.4, 0], url: [img6, img6BW] , name: 'Angel', description: 'No Description yet'},
+  {position: [-1.1, 0, -2.5], rotation: [0, 0.4, 0], url: [img7, img7BW] , name: 'ANGEL', description: 'No Description yet'},
+  //outer middle
+  {position: [2, 0, 0], rotation: [0, -0.9, 0], url: [img2, img2BW] , name: 'BUCHA', description: texts[2]},
+  {position: [-2, 0, 0], rotation: [0, 0.9, 0], url: [img4, img4BW] , name: 'IMAGE 4', description: 'No description yet'},
+  //right
+  {position: [4.5, 0, -1.5], rotation: [0, -0.4, 0], url: [img3, img3BW] , name: 'IMAGE 3', description: 'No description yet'},
+  {position: [4, 0, 1.5], rotation: [0, -1.5, 0], url: [img5, img5BW] , name: 'LAST LULLABY', description: texts[1]},
+  {position: [-4, 0, 1.5], rotation: [0, 1.5, 0], url: [img8, img7BW] , name: 'DANCE OF BIRTH AND DEATH', description: 'No description yet'},
   
 ]
 

@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { useRoute, useLocation } from 'wouter'
 import Frame from './Frame'
-import { callTenTimes } from './helpers'
 
 const GOLDENRATIO = 1.61803398875
 
@@ -14,7 +13,7 @@ export default function Frames({ images, q = new THREE.Quaternion(), p = new THR
   const [, setLocation] = useLocation()
   const [isZoomed, toggleZoom] = useState(null)
   const [target, changeTarget] = useState(null)
-
+  console.log('frames')
   useEffect(() => {
     
     if(isZoomed) {
@@ -23,7 +22,7 @@ export default function Frames({ images, q = new THREE.Quaternion(), p = new THR
       clicked.current?.parent?.localToWorld(p.set(0.4, GOLDENRATIO / 2, 1.25))
       clicked.current?.parent?.getWorldQuaternion(q)
     } else {
-      p.set(0, 1, 6.8)
+      p.set(0, 1.3, 6.8)
       q.identity()
     }
   })

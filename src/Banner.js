@@ -7,7 +7,8 @@ import { handleScroll } from './helpers'
 
 const GOLDENRATIO = 1.61803398875
 
-export default function Banner({description, name, textOpacity, yAxel, changeY, toggleZoom }) {
+export default function Banner({description, name, textOpacity, yAxel, changeY, toggleZoom, handleImageChange, urlIndex }) {
+  let colorText = urlIndex === 0 ? 'B & W' : 'Color'
   return (
     <>
     <Text maxWidth={0.8} onWheel={(e) => changeY(handleScroll(e, yAxel))} anchorX="left" anchorY={yAxel}
@@ -21,13 +22,13 @@ export default function Banner({description, name, textOpacity, yAxel, changeY, 
         " {name} "
       </Text>
       
-      <Text onClick={() => toggleZoom(null)} maxWidth={0.7} anchorX="left" anchorY={1.2} textAlign='center' position={[1.33, GOLDENRATIO-0.05, 0.03]} fontSize={0.058} color="white" fillOpacity={textOpacity}>
+      <Text onClick={() => toggleZoom(null)} maxWidth={0.7} anchorX="left" anchorY={1.2} textAlign='center' position={[1.33, GOLDENRATIO-0.07, 0.03]} fontSize={0.058} color="white" fillOpacity={textOpacity}>
         Zoom Out
       </Text>
 
-      {/* <Text onClick={()=> changeUrl(currentUrl === colored ? blackAndWhite : colored)} maxWidth={0.7} anchorX="left" anchorY={1.3} textAlign='center' position={[1, GOLDENRATIO, 0.3]} fontSize={0.058} color="white" fillOpacity={textOpacity}>
-       {currentUrl === colored? 'Vew in Black & White' : 'Vew in Color'}
-      </Text>  */}
+      <Text onClick={handleImageChange} maxWidth={0.7} anchorX="left" anchorY={1.3} textAlign='center' position={[1.28, GOLDENRATIO-0.15, 0.03]} fontSize={0.058} color="white" fillOpacity={textOpacity}>
+       View In {colorText}
+      </Text> 
     </>
   )
 
