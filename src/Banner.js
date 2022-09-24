@@ -29,7 +29,6 @@ export default function Banner({description, name, textOpacity, yAxel, changeY, 
 
   function handleScrollEvent(e) {
     changeY(handleScroll(e, yAxel))
-    console.log(desText)
   }
 
   return (
