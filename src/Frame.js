@@ -7,7 +7,7 @@ import Banner from './Banner'
 
 const GOLDENRATIO = 1.61803398875
 
-export default function Frame({ url, c = new THREE.Color(), p = new THREE.Vector3(),toggleZoom, target, changeTarget, framesGroup, ...props }) {
+export default function Frame({ url, c = new THREE.Color(), p = new THREE.Vector3(), isZoomed ,toggleZoom, target, changeTarget, framesGroup, ...props }) {
   const [hovered, hover] = useState(false)
   const [hiding, changeHiding] = useState(false)
   const [yAxel, changeY] = useState(0.3)
@@ -20,7 +20,6 @@ export default function Frame({ url, c = new THREE.Color(), p = new THREE.Vector
   const image = useRef()
   const frame = useRef()
   const {name, description } = props
-
   
   useFrame((state) => {
     if(wall.current && !finishedZoom) wall.current.position.lerp(hovered ? p.set(0, GOLDENRATIO / 1.9, 0) : p.set(0, GOLDENRATIO / 2, 0), 0.1)
@@ -63,16 +62,16 @@ export default function Frame({ url, c = new THREE.Color(), p = new THREE.Vector
           <meshBasicMaterial toneMapped={false} fog={false} transparent={true} opacity={imageOpacity} />
         </mesh>
           <Image raycast={() => null} ref={image} position={[0, 0, 0.6]} scale={[0.8, GOLDENRATIO/2.2, 0.7]} url={url[urlIndex]} />
-        {
-        target === nameID?
+      {
+        isZoomed !== null && target === nameID?
         <mesh ref={frame} raycast={() => null} scale={[0.5, 1, 0.1]} position={[0.8, 0, 0]}>
           <planeGeometry />
-          <meshBasicMaterial color='#212120' transparent={true} opacity={textOpacity}/>
+          <meshBasicMaterial color='#212120' transparent={true} opacity={textOpacity} reflectivity={0}/>
         </mesh>
         :null
-        }
-      </mesh>
-      {target === nameID ?
+      }
+    </mesh>
+      {isZoomed !== null && target === nameID ?
       <Banner  description={description} name={name} 
         yAxel={yAxel} changeY={changeY}
         textOpacity={textOpacity} toggleZoom={toggleZoom} 

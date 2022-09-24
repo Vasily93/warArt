@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import { useEffect, useRef, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { Line, Text } from '@react-three/drei'
-import { useRoute, useLocation } from 'wouter'
+import { useLocation } from 'wouter'
 import Frame from './Frame'
 
 const GOLDENRATIO = 1.61803398875
@@ -10,11 +10,10 @@ const GOLDENRATIO = 1.61803398875
 export default function Frames({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() }) {
   const framesGroup = useRef()
   const clicked = useRef()
-  const [, params] = useRoute('/item/:id')
-  const [, setLocation] = useLocation()
+  const [location, setLocation] = useLocation('')
   const [isZoomed, toggleZoom] = useState(null)
   const [target, changeTarget] = useState(null)
-
+  console.log(location, target)
   useEffect(() => {
     
     if(isZoomed) {
@@ -38,7 +37,7 @@ export default function Frames({ images, q = new THREE.Quaternion(), p = new THR
       onClick={(e) => (e.stopPropagation(), setLocation(clicked.current === e.object ? '/' : '/item/' + e.object.name))}
       onPointerMissed={() => setLocation('/')}>
       <Text position={[0, 2.8, 5]} fontSize={0.28} color="white">WORLD AND WAR</Text>
-      {images.map((props) => <Frame key={props.url} {...props} toggleZoom={toggleZoom} target={target} changeTarget={changeTarget} />)}
+      {images.map((props) => <Frame key={props.url} {...props} isZoomed={isZoomed} toggleZoom={toggleZoom} target={target} changeTarget={changeTarget} />)}
       
     </group>
   )
