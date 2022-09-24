@@ -1,4 +1,3 @@
-import { makeConsoleLogger } from "@notionhq/client/build/src/logging"
 
 export const handleScroll = (e, currentY) => {
   let delta = null

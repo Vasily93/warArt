@@ -10,7 +10,7 @@ const GOLDENRATIO = 1.61803398875
 export default function Frame({ url, c = new THREE.Color(), p = new THREE.Vector3(),toggleZoom, target, changeTarget, framesGroup, ...props }) {
   const [hovered, hover] = useState(false)
   const [hiding, changeHiding] = useState(false)
-  const [yAxel, changeY] = useState(0)
+  const [yAxel, changeY] = useState(0.3)
   const [urlIndex, changeIndex] = useState(1)
   const [finishedZoom, toggleFinishedZoom] = useState(false)
   const [textOpacity, changeOpacity] = useState(0)

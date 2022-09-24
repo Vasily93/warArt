@@ -52,8 +52,8 @@ const images = [
   //left side
   {position: [-4.5, 0, -1.5], rotation: [0, 0.6, 0], url: [img1, img1bw] , name: 'DANCE OF BIRTH AND DEATH', description: texts[0]},
   //middle
-  {position: [1.1, 0, -2.5], rotation: [0, -0.4, 0], url: [img6, img6BW] , name: 'Angel', description: 'No Description yet'},
-  {position: [-1.1, 0, -2.5], rotation: [0, 0.4, 0], url: [img7, img7BW] , name: 'ANGEL', description: 'No Description yet'},
+  {position: [1.15, 0, -2.5], rotation: [0, -0.6, 0], url: [img6, img6BW] , name: 'Angel', description: 'No Description yet'},
+  {position: [-1.15, 0, -2.5], rotation: [0, 0.6, 0], url: [img7, img7BW] , name: 'ANGEL', description: 'No Description yet'},
   //outer middle
   {position: [2, 0, 0], rotation: [0, -0.9, 0], url: [img2, img2BW] , name: 'BUCHA', description: texts[2]},
   {position: [-2, 0, 0], rotation: [0, 0.9, 0], url: [img4, img4BW] , name: 'IMAGE 4', description: 'No description yet'},
