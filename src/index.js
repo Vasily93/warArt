@@ -1,5 +1,6 @@
 import { Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
+import { Loader } from '@react-three/drei'
 import './styles.css'
 import App from './App'
 import img1 from './images/1.JPG'
@@ -21,7 +22,7 @@ import img7BW from './images/7BW.JPG'
 
 const texts = [
   `
-The idea for the picture was born after watching a video where Russian mothers do not believe their sons 
+The idea for the picture was born after watching a video where Russian mothers do not believe their sons
 (soldiers) who were capturedin Ukraine. Propaganda turned out to be so effective that even the primordial 
 maternal instinct began to fail in women. This is a grotesque reference 
 to the popular phrase attributed to Marshal Zhukov 
@@ -65,7 +66,10 @@ const images = [
 ]
 
 createRoot(document.getElementById('root')).render(
+  <>
   <Suspense fallback={null}>
     <App images={images} />
   </Suspense>
+  <Loader />
+  </>
 )

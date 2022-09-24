@@ -20,9 +20,9 @@ export default function Frame({ url, c = new THREE.Color(), p = new THREE.Vector
   const image = useRef()
   const frame = useRef()
   const {name, description } = props
-  
+
   useFrame((state) => {
-    if(wall.current && !finishedZoom) wall.current.position.lerp(hovered ? p.set(0, GOLDENRATIO / 1.9, 0) : p.set(0, GOLDENRATIO / 2, 0), 0.1)
+    if(wall.current) wall.current.position.lerp(hovered && !finishedZoom ? p.set(0, GOLDENRATIO / 1.7, 0) : p.set(0, GOLDENRATIO / 2, 0), 0.1)
     if(finishedZoom && textOpacity < 0.8) changeOpacity(textOpacity+0.03)
     if(!finishedZoom && textOpacity > 0) changeOpacity(textOpacity-0.03)
     if(hiding && imageOpacity < 1) changeImageOpacity(imageOpacity+0.02)
@@ -64,10 +64,12 @@ export default function Frame({ url, c = new THREE.Color(), p = new THREE.Vector
           <Image raycast={() => null} ref={image} position={[0, 0, 0.6]} scale={[0.8, GOLDENRATIO/2.2, 0.7]} url={url[urlIndex]} />
       {
         isZoomed !== null && target === nameID?
+        <>
         <mesh ref={frame} raycast={() => null} scale={[0.5, 1, 0.1]} position={[0.8, 0, 0]}>
           <planeGeometry />
           <meshBasicMaterial color='#212120' transparent={true} opacity={textOpacity} reflectivity={0}/>
         </mesh>
+        </>
         :null
       }
     </mesh>

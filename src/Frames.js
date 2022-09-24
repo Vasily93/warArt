@@ -13,9 +13,7 @@ export default function Frames({ images, q = new THREE.Quaternion(), p = new THR
   const [location, setLocation] = useLocation('')
   const [isZoomed, toggleZoom] = useState(null)
   const [target, changeTarget] = useState(null)
-  console.log(location, target)
-  useEffect(() => {
-    
+  useEffect(() => {  
     if(isZoomed) {
       clicked.current = framesGroup.current.getObjectByName(target)
       clicked.current?.parent?.updateWorldMatrix(true, true)

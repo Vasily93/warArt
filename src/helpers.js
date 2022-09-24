@@ -13,7 +13,10 @@ export const handleScroll = (e, currentY) => {
       direction = delta > 0 ? -0.02 : 0.02;
   }
 
-  if(direction<0 && currentY<rectArr[3]) return currentY
+  if(direction<0 && currentY<rectArr[3]) {
+    console.log(currentY, rectArr[3])
+    return currentY
+  }
 
   return direction + currentY
 }
