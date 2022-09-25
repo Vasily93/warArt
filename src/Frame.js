@@ -4,6 +4,7 @@ import { useFrame } from '@react-three/fiber'
 import { useCursor, Image, Text } from '@react-three/drei'
 import getUuid from 'uuid-by-string'
 import Banner from './Banner'
+import Painting from './Painting'
 
 const GOLDENRATIO = 1.61803398875
 
@@ -57,11 +58,11 @@ export default function Frame({ url, c = new THREE.Color(), p = new THREE.Vector
           <boxGeometry />
           <meshBasicMaterial toneMapped={false} fog={false} />
         </mesh>
-        <mesh ref={frame} raycast={() => null} scale={[0.9, GOLDENRATIO/2, 0.9]} position={[0, 0, 0.2]}>
+        <mesh ref={frame} raycast={() => null} scale={[0.9, GOLDENRATIO/2, 0.9]} position={[0, 0, 0.7]}>
           <boxGeometry />
           <meshBasicMaterial toneMapped={false} fog={false} transparent={true} opacity={imageOpacity} />
         </mesh>
-          <Image raycast={() => null} ref={image} position={[0, 0, 0.6]} scale={[0.8, GOLDENRATIO/2.2, 0.7]} url={url[urlIndex]} />
+          <Painting image={image} url={url} urlIndex={urlIndex} />
       {
         isZoomed !== null && target === nameID?
         <>
