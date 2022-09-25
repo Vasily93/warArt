@@ -13,10 +13,19 @@ body,
   padding: 0;
   overflow: hidden;
   font-family: 'Abril Fatface';
-  color: 'red'
+}
+
+#mobile_message {
+  color: white;
+  margin: 20%;
+  
+  text-align: center;
+
 }
 
 body {
   user-select: none;
-  font-family: 'Abril Fatface'
+  font-family: 'Abril Fatface';
+  background-color: black;
+  align-content: center;
 }

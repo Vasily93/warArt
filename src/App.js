@@ -5,8 +5,8 @@ import Frames from './Frames'
 
 export default function App({ images }) {
   const screen = new ScreenSizeDetector()
-
   const currentDevice = Object.entries(screen?.is).filter(arr => arr[1] === true)[0][0]
+
   const screens = {
     'desktop': [1.6, 7, 2.8],
     'laptop': [1.7, 7.5, 3.2],
@@ -15,11 +15,12 @@ export default function App({ images }) {
     'smartwatch': [1.7, 7, 2.8],
     'tablet': [1.4, 7, 2.8],
   }
+
   const currentScreen = screens[currentDevice]
-  console.log(currentDevice)
+  
   const canvas = currentDevice !== 'mobile' ?
-  <Canvas gl={{ alpha: false }} dpr={[1, 1.5]} camera={{ fov: 70, position: [0, 2, 10] }}>
-    <color args={['black']} />
+    <Canvas gl={{ alpha: false }} dpr={[1, 1.5]} camera={{ fov: 70, position: [0, 2, 10] }}>
+      <color args={['black']} />
       <Environment preset='apartment' />
       <group position={[0, -0.5, 0]}>
         <Frames images={images} currentScreen={currentScreen} />
@@ -40,7 +41,12 @@ export default function App({ images }) {
         </mesh>
       </group>
     </Canvas>
-    : <h1>Not Optimized for Mobile</h1>
+    :
+    <div id='mobile_message'>
+      <h1 >Not Optimized for Mobile</h1>
+      <p>Consider to visit this website on a tablet or a laptop</p>
+    </div> 
+
   return (
     <>
     {canvas}
