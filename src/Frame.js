@@ -60,7 +60,7 @@ export default function Frame({ url, c = new THREE.Color(), p = new THREE.Vector
         </mesh>
         <mesh ref={frame} raycast={() => null} scale={[0.9, GOLDENRATIO/2, 0.9]} position={[0, 0, 0.7]}>
           <boxGeometry />
-          <meshBasicMaterial toneMapped={false} fog={false} transparent={true} opacity={imageOpacity} />
+          <meshBasicMaterial transparent={true} opacity={imageOpacity} />
         </mesh>
           <Painting image={image} url={url} urlIndex={urlIndex} />
       {

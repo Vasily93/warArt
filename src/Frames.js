@@ -2,10 +2,13 @@ import * as THREE from 'three'
 import { useEffect, useRef, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { Text } from '@react-three/drei'
+import { preloadFont } from 'troika-three-text'
 import { useLocation } from 'wouter'
 import Frame from './Frame'
 
 const GOLDENRATIO = 1.61803398875
+const font = 'https://fonts.cdnfonts.com/s/83703/TiffanyLaurenceRegular-MVlpP.woff'
+
 
 export default function Frames({ images, currentScreen, q = new THREE.Quaternion(), p = new THREE.Vector3() }) {
   const framesGroup = useRef()
@@ -36,7 +39,19 @@ export default function Frames({ images, currentScreen, q = new THREE.Quaternion
       ref={framesGroup}
       onClick={(e) => (e.stopPropagation(), setLocation(clicked.current === e.object ? '/' : '/item/' + e.object.name))}
       onPointerMissed={() => setLocation('/')}>
-      <Text position={[0, currentScreen[2], 5]} fontSize={0.28}>WORLD AND WAR</Text>
+      <mesh raycast={() => null} scale={[2.65, 0.1, 0.1]} position={[0, 2.96, 4.6]}>
+        <planeGeometry />
+        <meshBasicMaterial color='#212120' transparent={true} opacity={0.4} reflectivity={0}/>
+      </mesh>
+      <mesh raycast={() => null} scale={[2.65, 0.2, 0.1]} position={[0, 2.96, 4.61]}>
+        <planeGeometry />
+        <meshBasicMaterial color='#212120' transparent={true} opacity={0.4} reflectivity={0}/>
+      </mesh>
+      <mesh raycast={() => null} scale={[2.65, 0.3, 0.1]} position={[0, 2.96, 4.62]}>
+        <planeGeometry />
+        <meshBasicMaterial color='#212120' transparent={true} opacity={0.4} reflectivity={0}/>
+      </mesh>
+      <Text position={[0, currentScreen[2], 4.5]} font={font} fontSize={0.38}>WORLD AND WAR</Text>
       {images.map((props) => <Frame key={props.url} {...props} isZoomed={isZoomed} toggleZoom={toggleZoom} target={target} changeTarget={changeTarget} />)}
       
     </group>
