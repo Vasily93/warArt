@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import { useRef, useState, useEffect } from 'react'
 import { useFrame } from '@react-three/fiber'
-import { useCursor, Image, Text,  } from '@react-three/drei'
+import { Text, Plane } from '@react-three/drei'
 import getUuid from 'uuid-by-string'
 import { handleScroll } from './helpers'
 

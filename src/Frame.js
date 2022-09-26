@@ -24,7 +24,7 @@ export default function Frame({ url, c = new THREE.Color(), p = new THREE.Vector
 
   useFrame((state) => {
     if(wall.current) wall.current.position.lerp(hovered && !finishedZoom ? p.set(0, GOLDENRATIO / 1.7, 0) : p.set(0, GOLDENRATIO / 2, 0), 0.1)
-    if(finishedZoom && textOpacity < 0.8) changeOpacity(textOpacity+0.03)
+    if(finishedZoom && textOpacity < 0.9) changeOpacity(textOpacity+0.03)
     if(!finishedZoom && textOpacity > 0) changeOpacity(textOpacity-0.03)
     if(hiding && imageOpacity < 1) changeImageOpacity(imageOpacity+0.02)
     if(hiding && imageOpacity >= 1) {

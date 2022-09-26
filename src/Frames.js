@@ -16,7 +16,7 @@ export default function Frames({ images, currentScreen, q = new THREE.Quaternion
   const [location, setLocation] = useLocation('')
   const [isZoomed, toggleZoom] = useState(null)
   const [target, changeTarget] = useState(null)
-  
+  const [showInfo, changeInfo] = useState(false)
   
   useEffect(() => {  
     if(isZoomed) {
@@ -30,6 +30,15 @@ export default function Frames({ images, currentScreen, q = new THREE.Quaternion
     }
   })
 
+  const infoModal = 
+  <>
+  <mesh raycast={() => null} scale={[4.8, 2.4, 0.1]} position={[0, 1.8, 4.9]}>
+    <planeGeometry />
+    <meshBasicMaterial color='black' transparent={true} opacity={0.97} reflectivity={0}/>
+  </mesh>
+  <Text position={[0, 3, 4.9]} font={font} fontSize={0.18}>Art by Elena Markova</Text>
+  </>
+
   useFrame((state, dt) => {
     state.camera.position.lerp(p, 0.025)
     state.camera.quaternion.slerp(q, 0.025)
@@ -39,6 +48,10 @@ export default function Frames({ images, currentScreen, q = new THREE.Quaternion
       ref={framesGroup}
       onClick={(e) => (e.stopPropagation(), setLocation(clicked.current === e.object ? '/' : '/item/' + e.object.name))}
       onPointerMissed={() => setLocation('/')}>
+      <mesh raycast={() => null} scale={[2.65, 0.05, 0.1]} position={[0, 2.98, 4.6]}>
+        <planeGeometry />
+        <meshBasicMaterial color='black' transparent={true} opacity={0.4} reflectivity={0}/>
+      </mesh> 
       <mesh raycast={() => null} scale={[2.65, 0.1, 0.1]} position={[0, 2.96, 4.6]}>
         <planeGeometry />
         <meshBasicMaterial color='black' transparent={true} opacity={0.4} reflectivity={0}/>
@@ -51,7 +64,9 @@ export default function Frames({ images, currentScreen, q = new THREE.Quaternion
         <planeGeometry />
         <meshBasicMaterial color='black' transparent={true} opacity={0.4} reflectivity={0}/>
       </mesh>
+      {showInfo ? infoModal : null}
       <Text position={[0, currentScreen[2], 4.5]} font={font} fontSize={0.38}>WORLD AND WAR</Text>
+      <Text onClick={() => changeInfo(!showInfo)} position={[2.8, 0.2, 4.5]} font={font} fontSize={0.1}>INFO</Text>
       {images.map((props) => <Frame key={props.url} {...props} isZoomed={isZoomed} toggleZoom={toggleZoom} target={target} changeTarget={changeTarget} />)}
       
     </group>
