@@ -2,7 +2,6 @@ import * as THREE from 'three'
 import { useEffect, useRef, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { Text } from '@react-three/drei'
-import { preloadFont } from 'troika-three-text'
 import { useLocation } from 'wouter'
 import Frame from './Frame'
 
