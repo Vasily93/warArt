@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import { useRef, useState, useEffect } from 'react'
 import { useFrame } from '@react-three/fiber'
-import { useCursor, Image, Text, Line } from '@react-three/drei'
+import { useCursor, Image, Text,  } from '@react-three/drei'
 import getUuid from 'uuid-by-string'
 import { handleScroll } from './helpers'
 
@@ -24,6 +24,7 @@ export default function Banner({description, name, textOpacity, yAxel, changeY, 
     textAlign='left' position={[1.12, GOLDENRATIO, 0.0001]}
     fontSize={0.078} color="white" font={font}
     clipRect={[, minY, , maxY]} fillOpacity={textOpacity} 
+    lineHeight={1.3}
     >
       {description}
     </Text>
@@ -49,6 +50,7 @@ export default function Banner({description, name, textOpacity, yAxel, changeY, 
       <Text onClick={handleImageChange} maxWidth={0.7} anchorX="left" anchorY={1.3} textAlign='center' position={[1.28, GOLDENRATIO-0.15, 0.03]} fontSize={0.07} color="white" fillOpacity={textOpacity} font={font}>
        View In {colorText}
       </Text> 
+      
     </>
   )
 

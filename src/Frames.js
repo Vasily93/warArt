@@ -41,15 +41,15 @@ export default function Frames({ images, currentScreen, q = new THREE.Quaternion
       onPointerMissed={() => setLocation('/')}>
       <mesh raycast={() => null} scale={[2.65, 0.1, 0.1]} position={[0, 2.96, 4.6]}>
         <planeGeometry />
-        <meshBasicMaterial color='#212120' transparent={true} opacity={0.4} reflectivity={0}/>
+        <meshBasicMaterial color='black' transparent={true} opacity={0.4} reflectivity={0}/>
       </mesh>
       <mesh raycast={() => null} scale={[2.65, 0.2, 0.1]} position={[0, 2.96, 4.61]}>
         <planeGeometry />
-        <meshBasicMaterial color='#212120' transparent={true} opacity={0.4} reflectivity={0}/>
+        <meshBasicMaterial color='black' transparent={true} opacity={0.4} reflectivity={0}/>
       </mesh>
       <mesh raycast={() => null} scale={[2.65, 0.3, 0.1]} position={[0, 2.96, 4.62]}>
         <planeGeometry />
-        <meshBasicMaterial color='#212120' transparent={true} opacity={0.4} reflectivity={0}/>
+        <meshBasicMaterial color='black' transparent={true} opacity={0.4} reflectivity={0}/>
       </mesh>
       <Text position={[0, currentScreen[2], 4.5]} font={font} fontSize={0.38}>WORLD AND WAR</Text>
       {images.map((props) => <Frame key={props.url} {...props} isZoomed={isZoomed} toggleZoom={toggleZoom} target={target} changeTarget={changeTarget} />)}
