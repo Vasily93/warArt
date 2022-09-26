@@ -48,7 +48,7 @@ export default function Frames({ images, currentScreen, q = new THREE.Quaternion
       ref={framesGroup}
       onClick={(e) => (e.stopPropagation(), setLocation(clicked.current === e.object ? '/' : '/item/' + e.object.name))}
       onPointerMissed={() => setLocation('/')}>
-      <mesh raycast={() => null} scale={[2.65, 0.05, 0.1]} position={[0, 2.98, 4.6]}>
+      <mesh raycast={() => null} scale={[2.65, 0.08, 0.1]} position={[0, 2.99, 4.59]}>
         <planeGeometry />
         <meshBasicMaterial color='black' transparent={true} opacity={0.4} reflectivity={0}/>
       </mesh> 
