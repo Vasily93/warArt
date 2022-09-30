@@ -49,7 +49,7 @@ export default function Banner({description, name, textOpacity, yAxel, changeY, 
         Zoom Out
       </Text>
 
-      <mesh raycast={() => null} scale={[1, 0.9, 0.1]} position={[1.6, GOLDENRATIO-0.8, 0.0003]}>
+      {/* <mesh raycast={() => null} scale={[1, 0.9, 0.1]} position={[1.6, GOLDENRATIO-0.8, 0.0003]}>
         <planeGeometry />
         <meshBasicMaterial transparent={true} opacity={0.2}>
           <GradientTexture
@@ -58,7 +58,7 @@ export default function Banner({description, name, textOpacity, yAxel, changeY, 
             size={1000}
           />
         </meshBasicMaterial>
-      </mesh>      
+      </mesh>       */}
     </>
   )
 

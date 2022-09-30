@@ -4,6 +4,7 @@ import { useFrame } from '@react-three/fiber'
 import { Text } from '@react-three/drei'
 import { useLocation } from 'wouter'
 import Frame from './Frame'
+import Title from './Title'
 
 const GOLDENRATIO = 1.61803398875
 const font = 'https://fonts.cdnfonts.com/s/83703/TiffanyLaurenceRegular-MVlpP.woff'
@@ -47,24 +48,8 @@ export default function Frames({ images, currentScreen, q = new THREE.Quaternion
       ref={framesGroup}
       onClick={(e) => (e.stopPropagation(), setLocation(clicked.current === e.object ? '/' : '/item/' + e.object.name))}
       onPointerMissed={() => setLocation('/')}>
-      <mesh raycast={() => null} scale={[2.65, 0.08, 0.1]} position={[0, 2.99, 4.59]}>
-        <planeGeometry />
-        <meshBasicMaterial color='black' transparent={true} opacity={0.4} reflectivity={0}/>
-      </mesh> 
-      <mesh raycast={() => null} scale={[2.65, 0.1, 0.1]} position={[0, 2.96, 4.6]}>
-        <planeGeometry />
-        <meshBasicMaterial color='black' transparent={true} opacity={0.4} reflectivity={0}/>
-      </mesh>
-      <mesh raycast={() => null} scale={[2.65, 0.2, 0.1]} position={[0, 2.96, 4.61]}>
-        <planeGeometry />
-        <meshBasicMaterial color='black' transparent={true} opacity={0.4} reflectivity={0}/>
-      </mesh>
-      <mesh raycast={() => null} scale={[2.65, 0.3, 0.1]} position={[0, 2.96, 4.62]}>
-        <planeGeometry />
-        <meshBasicMaterial color='black' transparent={true} opacity={0.4} reflectivity={0}/>
-      </mesh>
       {showInfo ? infoModal : null}
-      <Text position={[0, currentScreen[2], 4.5]} font={font} fontSize={0.38}>WORLD AND WAR</Text>
+      <Title currentScreen={currentScreen} />
       <Text onClick={() => changeInfo(!showInfo)} position={[2.8, 0.2, 4.5]} font={font} fontSize={0.1}>INFO</Text>
       {images.map((props) => <Frame key={props.url} {...props} isZoomed={isZoomed} toggleZoom={toggleZoom} target={target} changeTarget={changeTarget} />)}
       
