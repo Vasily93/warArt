@@ -5,6 +5,7 @@ import { Text } from '@react-three/drei'
 import { useLocation } from 'wouter'
 import Frame from './Frame'
 import Title from './Title'
+import Modal from './Modal'
 
 const GOLDENRATIO = 1.61803398875
 const font = 'https://fonts.cdnfonts.com/s/83703/TiffanyLaurenceRegular-MVlpP.woff'
@@ -30,27 +31,19 @@ export default function Frames({ images, currentScreen, q = new THREE.Quaternion
     }
   })
 
-  const infoModal = 
-  <>
-  <mesh raycast={() => null} scale={[4.8, 2.4, 0.1]} position={[0, 1.8, 4.9]}>
-    <planeGeometry />
-    <meshBasicMaterial color='black' transparent={true} opacity={0.97} reflectivity={0}/>
-  </mesh>
-  <Text position={[0, 3, 4.9]} font={font} fontSize={0.18}>Art by Elena Markova</Text>
-  </>
-
   useFrame((state, dt) => {
     state.camera.position.lerp(p, 0.025)
     state.camera.quaternion.slerp(q, 0.025)
   })
+
   return (
     <group
       ref={framesGroup}
       onClick={(e) => (e.stopPropagation(), setLocation(clicked.current === e.object ? '/' : '/item/' + e.object.name))}
       onPointerMissed={() => setLocation('/')}>
-      {showInfo ? infoModal : null}
+      <Modal showInfo={showInfo} />
       <Title currentScreen={currentScreen} />
-      <Text onClick={() => changeInfo(!showInfo)} position={[2.8, 0.2, 4.5]} font={font} fontSize={0.1}>INFO</Text>
+      <Text onClick={() => changeInfo(!showInfo)} position={[0, 0.2, 4.5]} font={font} fontSize={0.1}>{showInfo ? 'Close':'Info'}</Text>
       {images.map((props) => <Frame key={props.url} {...props} isZoomed={isZoomed} toggleZoom={toggleZoom} target={target} changeTarget={changeTarget} />)}
       
     </group>
