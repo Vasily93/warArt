@@ -15,7 +15,7 @@ export default function Modal({ showInfo }) {
     <>
       <mesh raycast={() => null} scale={[4.8, 2.4, 0.1]} position={[0, yOffset, 4.9]}>
         <planeGeometry />
-        <meshBasicMaterial color='black' transparent={true} opacity={0.97} reflectivity={0}/>
+        <meshBasicMaterial color='black' transparent={true} opacity={0.95} reflectivity={0}/>
       </mesh>
       <Text position={[0, yOffset+1, 5]} font={font} fontSize={0.18}>Art by Elena Markova</Text>
     </>
